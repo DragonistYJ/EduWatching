@@ -138,7 +138,7 @@ GitHub地址：https://github.com/DragonistYJ/EduWatching.git
 
 将ffmpeg加入到环境变量中
 
-需要将教室的监控视频放到classroom文件夹下，按照如下目录格式命名
+需要在工程目录中新建classroom文件夹，将教室的监控视频放到classroom文件夹下，按照如下目录格式命名
 
 文件夹序号id从1开始连续增加，前置视频名称为{id}.mp4，后置视频名称为{id}_back.mp4
 
