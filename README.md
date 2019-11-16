@@ -1,7 +1,3 @@
----
-typora-root-url: ./
----
-
 [toc]
 
 # 项目简介
