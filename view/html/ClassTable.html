@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <title>监控列表</title>
+    <script src="../js/qwebchannel.js"></script>
+    <style type="text/css">
+        .box {
+            display: block;
+            float: left;
+            margin: 1% 3% 1% 0;
+            background: #FFF;
+            width: 320px;
+            padding: 0 1.5% 1.5% 1.5%;
+            border-radius: 5px;
+        }
+
+        .box img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .button a {
+            font-family: 'Open Sans', sans-serif;
+            color: #FFF;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            border: none;
+            display: inline-block;
+            background: #F86C1B;
+            margin-top: 10px;
+            -webkit-transition: all 0.3s ease-out;
+            -moz-transition: all 0.3s ease-out;
+            -ms-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+            text-decoration: none;
+        }
+
+        .button a:hover {
+            background: #222;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .button span:last-child {
+            margin-left: 20%;
+        }
+
+        body {
+            background: url(../images/main_bg.jpg);
+            background-size: cover;
+            padding-left: 3%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <div class="box" id="class_1" onclick="class_clicked(this)">
+        <h3>商务礼仪</h3>
+        <img src="../../classroom/1/thumbnail.jpg" alt=""/>
+        <h4>上课地点：江安一教A座205</h4>
+        <h4>教师：王鹏</h4>
+        <div class="button">
+            <span><a href="#">应到人数：58</a></span>
+            <span><a href="#">实到人数：58</a></span>
+        </div>
+    </div>
+</div>
+<script>
+    function updateBox(index, box) {
+        let node = document.getElementById(index);
+        node.innerHTML = box;
+    }
+
+    function setupTable(table) {
+        document.getElementById('content').innerHTML = table;
+    }
+
+    function addBox(box) {
+        document.getElementById('content').innerHTML += box;
+    }
+
+    function removeBox(index) {
+        document.getElementById(index).remove();
+    }
+
+    function class_clicked(item) {
+        let class_id = item.id;
+        new QWebChannel(qt.webChannelTransport, function (channel) {
+            let class_obj = channel.objects.class_obj;
+            class_obj.class_item_clicked(class_id);
+        });
+    }
+</script>
+
+</body>
+</html>
+

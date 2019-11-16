@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="log">
+    <file>logo.png</file>
+    <file>cross.png</file>
+    <file>background.png</file>
+  </qresource>
+</RCC>

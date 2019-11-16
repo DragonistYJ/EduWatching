@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/qwebchannel.js"></script>
+    <style>
+        .row {
+            padding: 12px 0 12px 4%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="row">
+    <div class="col-2">
+        <button type="button" class="btn btn-info" id="class_on" onclick="button_clicked('on')">正在行课的教室</button>
+    </div>
+    <div class="col-2">
+        <button type="button" class="btn btn-warning" id="class_off" onclick="button_clicked('off')">空闲的教室</button>
+    </div>
+</div>
+</body>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    function button_clicked(button_id) {
+        new QWebChannel(qt.webChannelTransport, function (channel) {
+            let state_title_obj = channel.objects.state_title_obj;
+            state_title_obj.button_clicked(button_id);
+        });
+    }
+</script>
+</html>

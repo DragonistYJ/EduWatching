@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/qwebchannel.js"></script>
+    <style>
+        .row {
+            padding-top: 4px;
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .col-3 label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 10%;
+            background-color: #9fcdff;
+            border-radius: 4px;
+            border-style: solid;
+            border-width: 4px;
+            border-color: #007bff;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="row">
+    <div class="col-3">
+        <div class="form-group">
+            <label for="campus">校区</label>
+            <input type="text" class="form-control" id="campus" placeholder="请输入校区">
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="form-group">
+            <label for="building">教学楼</label>
+            <input type="text" class="form-control" id="building" placeholder="请输入教学楼名称">
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="form-group">
+            <label for="floor">教室号</label>
+            <input type="text" class="form-control" id="floor" placeholder="请输入教室号">
+        </div>
+    </div>
+    <div class="col-2">
+        <button type="button" onclick="confirm()">确认</button>
+    </div>
+</div>
+</body>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    function confirm() {
+        let campus = document.getElementById('campus').value;
+        let building = document.getElementById('building').value;
+        let floor = document.getElementById('floor').value;
+        new QWebChannel(qt.webChannelTransport, function (channel) {
+            let building_title_obj = channel.objects.building_title_obj;
+            building_title_obj.confirm_clicked(campus, building, floor);
+        });
+    }
+</script>
+</html>

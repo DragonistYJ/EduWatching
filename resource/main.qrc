@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="main">
+    <file>favicon.png</file>
+    <file>record.png</file>
+    <file>abnormal.png</file>
+    <file>building.png</file>
+    <file>status.png</file>
+  </qresource>
+  <qresource prefix="title">
+    <file>maximize_black.png</file>
+    <file>corss_black.png</file>
+    <file>minimize_black.png</file>
+    <file>logo.png</file>
+  </qresource>
+</RCC>

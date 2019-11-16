@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/qwebchannel.js"></script>
+</head>
+
+<style>
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    .content-inner {
+        padding: 25px;
+        width: 100%;
+        background: #EEF5F9;
+        height: 100%;
+    }
+
+    table {
+        font-size: 0.9em;
+        color: #666;
+    }
+</style>
+
+<body>
+<div class="content-inner">
+    <table class="table">
+        <thead>
+        <tr class="bg-info text-white">
+            <th>
+                <div class="form-group">
+                    <label for="courseName">课程名称</label>
+                    <input type="text" class="form-control" id="courseName" placeholder="请输入名称">
+                </div>
+            </th>
+            <th>
+                <div class="form-group">
+                    <label for="teacher">任课教师</label>
+                    <input type="text" class="form-control" id="teacher" placeholder="请输入名称">
+                </div>
+            </th>
+            <th>
+                <div class="form-group">
+                    <label for="time">上课时间</label>
+                    <input type="date" class="form-control" id="time" placeholder="请输入名称">
+                </div>
+            </th>
+            <th>
+                <div class="form-group">
+                    <label for="location">上课地点</label>
+                    <input type="text" class="form-control" id="location" placeholder="请输入名称">
+                </div>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody id="tbody">
+        <tr class="table">
+            <th scope="row">
+                <a>形式与政策</a>
+            </th>
+            <td>王鹏</td>
+            <td>周五 13:50-15:30</td>
+            <td>江安校区综合楼C座103</td>
+        </tr>
+        <tr class="table-success">
+            <th scope="row">
+                <a>形式与政策</a>
+            </th>
+            <td>王鹏</td>
+            <td>周五 13:50-15:30</td>
+            <td>江安校区综合楼C座103</td>
+        </tr>
+        <tr class="table">
+            <th scope="row">
+                <a>形式与政策</a>
+            </th>
+            <td>王鹏</td>
+            <td>周五 13:50-15:30</td>
+            <td>江安校区综合楼C座103</td>
+        </tr>
+        <tr class="table-success" id="send">
+            <th scope="row">
+                <a>形式与政策</a>
+            </th>
+            <td>王鹏</td>
+            <td>周五 13:50-15:30</td>
+            <td>江安校区综合楼C座103</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    function clear() {
+        document.getElementById('tbody').innerHTML = ''
+    }
+
+    window.onload = function () {
+        new QWebChannel(qt.webChannelTransport, function (channel) {
+            let record_list_obj = channel.objects.record_list_obj;
+            document.getElementById("send").onclick = function () {
+                record_list_obj.record_list_item_clicked(5);
+            };
+        });
+    }
+
+</script>
+</body>
+</html>

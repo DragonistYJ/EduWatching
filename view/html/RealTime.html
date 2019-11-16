@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/qwebchannel.js"></script>
+    <style>
+        .page-holder {
+            overflow-x: hidden;
+            min-height: calc(100vh - 72px);
+        }
+
+        .card {
+            background-color: #fff;
+            border: none;
+            -webkit-box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+        }
+
+        .card-header {
+            padding: 1.2rem 1.8rem;
+            background-color: white;
+            border-bottom: none;
+            -webkit-box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header:first-child {
+            border-radius: calc(1rem - 1px) calc(1rem - 1px) 0 0;
+        }
+
+        .text-uppercase {
+            letter-spacing: 0.2em;
+        }
+
+        .card-body {
+            padding: 1.2rem;
+        }
+
+        .pic-body {
+            padding: 0.6rem;
+        }
+
+        h4 {
+            margin-bottom: 0.5rem;
+            font-family: "Poppins", sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+            color: inherit;
+        }
+
+        .container-fluid {
+            padding-left: 6em;
+            padding-right: 6em;
+        }
+
+        span {
+            color: red;
+            text-decoration: underline;
+            text-underline: red;
+        }
+
+        body {
+            background: url(../images/main_bg.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed
+        }
+    </style>
+</head>
+<body>
+<div class="d-flex align-items-stretch">
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container-fluid">
+            <div class="row mt-3">
+                <div class="col-lg-5">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4 class="text-uppercase mb-0">学生状态监控</h4>
+                        </div>
+                        <div class="pic-body">
+                            <img id="student_pic" src="" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="text-uppercase mb-0">教师状态监控</h4>
+                        </div>
+                        <div class="pic-body">
+                            <img id="teacher_pic" src="" style="width: 100%"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mb-4" style="margin-top: 8%">
+                        <div class="card-header">
+                            <h4 class="text-uppercase mb-0">学生人数统计</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-holder">
+                                <canvas id="student_chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="margin-top: 24%">
+                        <div class="card-header">
+                            <h4 class="text-uppercase mb-0">教师状态监测</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-holder">
+                                <canvas id="teacher_chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card" style="height: 100%" id="teacher_card">
+                        <div class="card-header">
+                            <h4 class="mb-0 text-uppercase">教师语音</h4>
+                        </div>
+                        <div class="card-body" style="overflow: scroll; overflow-x: hidden; overflow-y: auto"
+                             id="teacher_speech">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JavaScript files-->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/Chart.min.js"></script>
+<script>
+    let ctx1 = $("canvas").get(0).getContext("2d");
+    let gradientNormal = ctx1.createLinearGradient(10, 0, 150, 300);
+    gradientNormal.addColorStop(0, 'rgba(0, 100, 0, 1)');
+    gradientNormal.addColorStop(1, 'rgba(0, 255, 0, 0.8)');
+
+    let gradientPhone = ctx1.createLinearGradient(10, 0, 150, 300);
+    gradientPhone.addColorStop(0, 'rgba(255, 0, 0, 1)');
+    gradientPhone.addColorStop(1, 'rgba(235, 177, 247, 0.8)');
+
+    let gradientStand = ctx1.createLinearGradient(10, 0, 150, 300);
+    gradientStand.addColorStop(0, 'rgba(5, 218, 249, 1)');
+    gradientStand.addColorStop(1, 'rgba(200, 255, 251, 0.8)');
+
+    let gradientSleep = ctx1.createLinearGradient(10, 0, 150, 300);
+    gradientSleep.addColorStop(0, 'rgba(246, 192, 44, 1)');
+    gradientSleep.addColorStop(1, 'rgba(230, 234, 100, 0.8)');
+
+    let studentCanvas = document.getElementById('student_chart');
+    let studentChart = new Chart(studentCanvas, {
+        type: 'bar',
+        options: {
+            scales: {
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        color: '#efefef'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        min: 0
+                    },
+                    gridLines: {
+                        color: '#efefef'
+                    }
+                }]
+            },
+            legend: false
+        },
+        data: {
+            labels: ["认真听课", "玩手机", "睡觉", "站立"],
+            datasets: [
+                {
+                    backgroundColor: [
+                        gradientNormal,
+                        gradientPhone,
+                        gradientSleep,
+                        gradientStand
+                    ],
+                    hoverBackgroundColor: [
+                        gradientNormal,
+                        gradientPhone,
+                        gradientSleep,
+                        gradientStand
+                    ],
+                    borderColor: [
+                        gradientNormal,
+                        gradientPhone,
+                        gradientSleep,
+                        gradientStand
+                    ],
+                    borderWidth: 1,
+                    data: [0, 0, 0, 0],
+                }
+            ]
+        }
+    });
+
+    function updateStudentChart(normal, phone, sleep, stand) {
+        studentChart.data.datasets[0].data = [normal, phone, sleep, stand];
+        studentChart.update();
+    }
+
+    let teacherCanvas = document.getElementById('teacher_chart');
+    let teacherChart = new Chart(teacherCanvas, {
+        type: 'line',
+        options: {
+            scales: {
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        color: '#efefef'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        min: 0,
+                        max: 100
+                    },
+                    gridLines: {
+                        color: '#efefef'
+                    }
+                }]
+            }
+        },
+        data: {
+            labels: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+            datasets: [
+                {
+                    label: "情感(分)",
+                    borderColor: "rgba(0,220,0,1)",
+                    fill: "rgba(0,220,0,0.2)",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                },
+                {
+                    label: "语速(字/10秒)",
+                    borderColor: "rgba(0,0,200,1)",
+                    fill: "rgba(0,0,200,0.2)",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                }]
+        }
+    });
+
+    function updateTeacherChart(time, emotion, speed) {
+        teacherChart.data.labels.shift();
+        teacherChart.data.labels.push(time);
+        teacherChart.data.datasets[0].data.shift();
+        teacherChart.data.datasets[0].data.push(emotion);
+        teacherChart.data.datasets[1].data.shift();
+        teacherChart.data.datasets[1].data.push(speed);
+        teacherChart.update();
+    }
+
+    window.onresize = function () {
+        document.getElementById('teacher_card').style.maxHeight = (window.innerHeight - 16) + "px";
+    };
+
+    window.onload = function () {
+        document.getElementById('teacher_card').style.maxHeight = (window.innerHeight - 16) + "px";
+    };
+
+    function addSpeech(time, emtion, sentence) {
+        let teacher_speech = document.getElementById('teacher_speech');
+        teacher_speech.innerHTML += time + "&emsp;" + emtion + "&emsp;" + sentence + "<br>";
+        teacher_speech.scrollTop = teacher_speech.scrollHeight;
+    }
+
+    function initView(student_pic, teacher_pic) {
+        document.getElementById('student_pic').src = "data:image/jpeg;base64," + student_pic;
+        document.getElementById('teacher_pic').src = "data:image/jpeg;base64," + teacher_pic;
+    }
+
+    function updateStudentPic(student_pic) {
+        document.getElementById('student_pic').src = "data:image/jpeg;base64," + student_pic;
+    }
+
+    function updateTeacherPic(teacher_pic) {
+        document.getElementById('teacher_pic').src = "data:image/jpeg;base64," + teacher_pic;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,486 @@
+html, body {
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #999;
+    font-size: 13px;
+    font-weight: 400;
+    overflow-x: hidden;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    background-image: url(../images/back.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed
+}
+
+header, hgroup, menu, nav, section, main {
+    display: block;
+}
+
+/* =============== DEFAULT HTML - LINK STYLES =============== */
+a {
+    text-decoration: none;
+    outline: none;
+    color: #2ec06c;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+a:hover {
+    color: #666;
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+a img {
+    border: none;
+}
+
+a[class*="glyphicon-"] {
+    text-decoration: none;
+}
+
+/* =============== DEFAULT HTML - HEADING STYLES =============== */
+h1, h2, h3, h4, h5, h6 {
+    margin: 5px 0 10px;
+    color: #333;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2 {
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 2.2em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* =============== DEFAULT HTML - LIST STYLES =============== */
+p, form, input {
+    margin: 0;
+    padding: 0;
+}
+p {
+    margin-bottom: 10px;
+}
+
+/* =============== DEFAULT HTML - IMAGES STYLES =============== */
+img {
+    border: none;
+    max-width: 100%;
+}
+
+img.image-left {
+    float: left;
+    margin-right: 5px;
+}
+
+img.img-full-width {
+    width: 100%;
+}
+
+/* =============== PREDEFINED CONTENT ALIGN =============== */
+.margin-left {
+    margin-left: 1em !important;
+    margin-right: 0;
+}
+
+.margin-right {
+    margin-left: 0;
+    margin-right: 1em !important;
+}
+
+/* ============================== LAYOUT ============================== */
+/* =============== LAYOUT - GENERAL LAYOUT =============== */
+.container {
+    position: relative;
+}
+
+[layout="row"] {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.fsr {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+}
+
+.fg {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+
+.fw {
+    flex-wrap: wrap;
+}
+
+.verticalCenter {
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+/* =============== HOVER EFFECT =============== */
+.nino-hoverEffect {
+    text-align: center;
+}
+
+.nino-hoverEffect .item {
+    background: #95e1d3;
+    display: inline-block;
+}
+
+.nino-hoverEffect .item .overlay {
+    display: block;
+    position: relative;
+    left: 0;
+    top: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.nino-hoverEffect .item .overlay:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    background: rgba(243, 129, 129, 0.9); /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(top, rgba(243, 129, 129, 0.9), rgba(252, 227, 138, 0.9));
+    background: -o-linear-gradient(top, rgba(243, 129, 129, 0.9), rgba(252, 227, 138, 0.9));
+    background: linear-gradient(to bottom, rgba(243, 129, 129, 0.9), rgba(252, 227, 138, 0.9)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.nino-hoverEffect .item:hover .overlay {
+    left: -10px;
+    top: -10px;
+}
+
+.nino-hoverEffect .item:hover .overlay:before {
+    opacity: 1;
+}
+
+.nino-hoverEffect .content {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    z-index: 1;
+    opacity: 0;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.nino-hoverEffect .item:hover .content {
+    opacity: 1;
+}
+
+/* =============== LAYOUT - CONTENT AREA =============== */
+.nino-sectionHeading {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 1;
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
+
+.nino-sectionHeading:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background: #f38181;
+    transform: translateX(-50%);
+}
+
+.nino-sectionHeading .nino-subHeading {
+    display: block;
+    text-transform: none;
+    font-weight: 400;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.nino-sectionDesc {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 40px;
+}
+
+/* =============== SECTION WHAT WE DO =============== */
+#nino-whatWeDo .panel-group {
+    margin: 0;
+}
+
+#nino-whatWeDo .panel-group .panel + .panel {
+    margin-top: 8px;
+}
+
+#nino-whatWeDo .panel-default {
+    border-color: #e5e5e5;
+    border-radius: 0;
+}
+
+#nino-whatWeDo .panel-default > .panel-heading {
+    background: #fff;
+    padding: 0;
+}
+
+#nino-whatWeDo .panel-title {
+    font-size: 14px;
+}
+
+#nino-whatWeDo .panel-title a {
+    display: block;
+    padding: 20px 15px 20px 50px;
+    position: relative;
+    text-decoration: none;
+}
+
+#nino-whatWeDo .panel-title .nino-icon {
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    font-size: 30px;
+    color: #95e1d3;
+}
+
+#nino-whatWeDo .panel-title .nino-icon.arrow {
+    left: auto;
+    right: 10px;
+    color: #ccc;
+}
+
+#nino-whatWeDo .panel-title .collapsed .nino-icon.arrow {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+#nino-whatWeDo .panel-body {
+    font-style: italic;
+    height: 350px;
+    font-weight: 300;
+}
+
+#nino-whatWeDo .mCS-default .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,
+#nino-whatWeDo .mCS-default .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar,
+#nino-whatWeDo .mCS-default .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar {
+    background: #95e1d3;
+}
+
+#nino-whatWeDo .mCSB_scrollTools .mCSB_draggerRail {
+    background: #f5f5f5;
+}
+
+/* =============== SECTION TESTIMONIAL =============== */
+.nino-testimonial {
+    background: #f8f8f8;
+    padding: 10px 0;
+}
+
+.nino-testimonial .unslider-arrow {
+    font-size: 40px;
+    color: #ccc;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.nino-testimonialSlider {
+    margin: 0 80px;
+}
+
+.nino-testimonialSlider .nino-avatar {
+    width: 190px;
+    margin-right: 35px;
+}
+
+.nino-testimonialSlider .nino-symbol {
+    margin: 0 35px 0 5px;
+}
+
+.nino-testimonialSlider .nino-symbol .nino-icon {
+    padding: 16px;
+    border: 2px solid #95e1d3;
+    font-size: 65px;
+    color: #95e1d3;
+}
+
+.nino-testimonialSlider .quote {
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.nino-testimonialSlider .name {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 18px;
+    position: relative;
+    padding-left: 50px;
+}
+
+.nino-testimonialSlider .name:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 40px;
+    height: 2px;
+    background: #f38181;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@media (max-width: 1200px) {
+    #nino-whatWeDo .panel-body {
+        height: 300px;
+    }
+}
+
+@media (max-width: 992px) {
+    section {
+        padding: 45px 0;
+    }
+
+    /* =============== SECTION TESTIMONIAL =============== */
+    .nino-testimonial {
+        padding: 30px 0;
+    }
+
+    .nino-testimonialSlider .quote {
+        font-size: 13px;
+    }
+
+    .nino-testimonialSlider .nino-avatar {
+        width: 130px;
+    }
+
+    /* =============== SECTION WHAT WE DO =============== */
+    #nino-whatWeDo .panel-group {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nino-hoverEffect .item {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 640px) {
+    section {
+        padding: 30px 0;
+    }
+
+    .nino-sectionHeading {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .nino-sectionHeading .nino-subHeading {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .nino-sectionDesc {
+        margin-bottom: 20px;
+    }
+
+    /* =============== SECTION TESTIMONIAL =============== */
+    .nino-testimonialSlider {
+        margin: 0 40px;
+    }
+
+    .nino-testimonialSlider .nino-symbol {
+        font-size: 45px;
+        margin: 0 15px 0 5px;
+    }
+
+    .nino-testimonialSlider .quote {
+        font-size: 11px;
+    }
+
+    .nino-testimonialSlider .name {
+        font-size: 13px;
+    }
+
+    .nino-testimonialSlider .nino-avatar {
+        width: 100px;
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* =============== SECTION TESTIMONIAL =============== */
+    .nino-testimonialSlider .nino-symbol,
+    .nino-testimonialSlider .nino-avatar {
+        display: none;
+    }
+}
