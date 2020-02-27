@@ -132,7 +132,7 @@ acc=0.9
 
 GitHub地址：https://github.com/DragonistYJ/EduWatching.git
 
-项目监控视频链接：链接：https://pan.baidu.com/s/1NBzpCEaPxgJ7TNQ8jr98qQ  提取码：1sru 
+项目监控视频链接：因学校教务处要求，视频涉及同学隐私，已删除该链接
 
 需要克隆代码到本地，首先按照requirements.txt中的依赖进行依赖安装
 
