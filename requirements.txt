@@ -4,6 +4,6 @@ opencv_python==4.2.0.32
 requests==2.22.0
 PyMySQL==0.9.3
 paddlepaddle_gpu==1.6.0.post107
-numpy==1.16.5
+numpy==1.22.0
 Pillow==9.3.0
 PyQt5==5.10.1
