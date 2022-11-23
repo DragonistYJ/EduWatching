@@ -1,6 +1,6 @@
 baidu_aip==2.2.18.0
 jieba==0.39
-opencv_python==4.1.1.26
+opencv_python==4.2.0.32
 requests==2.22.0
 PyMySQL==0.9.3
 paddlepaddle_gpu==1.6.0.post107
